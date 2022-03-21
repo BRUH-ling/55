@@ -1,0 +1,48 @@
+input.onButtonPressed(Button.A, function () {
+    BOT.change(LedSpriteProperty.X, -1)
+})
+input.onButtonPressed(Button.B, function () {
+    BOT.change(LedSpriteProperty.X, 1)
+})
+let BOT: game.LedSprite = null
+music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.Forever)
+basic.showString("5+5")
+basic.showString("A FOR 10")
+basic.showString("B FOR 15")
+music.startMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Forever)
+BOT = game.createSprite(2, 2)
+let sprite = game.createSprite(0, 2)
+let sprite_2 = game.createSprite(4, 2)
+basic.forever(function () {
+    if (BOT.isTouching(sprite)) {
+        music.stopMelody(MelodyStopOptions.All)
+        music.startMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.Forever)
+        sprite.delete()
+        BOT.delete()
+        sprite_2.delete()
+        images.iconImage(IconNames.Yes).showImage(0, 250)
+        images.iconImage(IconNames.Yes).showImage(0, 250)
+        images.iconImage(IconNames.Yes).showImage(0, 250)
+        basic.showString("HOORAY")
+        basic.showString("YOU GOT IT RIGHT")
+    }
+    if (BOT.isTouching(sprite_2)) {
+        music.stopMelody(MelodyStopOptions.All)
+        music.startMelody(music.builtInMelody(Melodies.Wawawawaa), MelodyOptions.Once)
+        sprite.delete()
+        BOT.delete()
+        sprite_2.delete()
+        images.iconImage(IconNames.No).showImage(0, 250)
+        images.iconImage(IconNames.No).showImage(0, 250)
+        images.iconImage(IconNames.No).showImage(0, 250)
+        images.iconImage(IconNames.No).showImage(0, 250)
+        images.iconImage(IconNames.No).showImage(0, 250)
+        music.startMelody(music.builtInMelody(Melodies.Funeral), MelodyOptions.Forever)
+        basic.showString("TRY AGAIN")
+        music.stopMelody(MelodyStopOptions.All)
+        music.startMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.Forever)
+        BOT = game.createSprite(2, 2)
+        sprite = game.createSprite(0, 2)
+        sprite_2 = game.createSprite(4, 2)
+    }
+})
